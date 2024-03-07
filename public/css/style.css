@@ -1,18 +1,20 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box !important;
 }
 body{
-    position: relative;
-    height: 100vh;
+    scroll-behavior: smooth;
+    height: 100%;
     background: linear-gradient(to bottom right, #661887, #ce165a);
 }
-.navbar{
+
+.navigationbar{
     font-family: "Kanit", sans-serif;
     font-weight: 500;
     font-style: normal;
     box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.621);
+    z-index: 3;
     margin-top: 2%;
     left: 5%;
     width: 90%;
@@ -20,7 +22,272 @@ body{
     position: fixed;
     height: 10%;
     display: flex;
+    justify-content: space-between;
 }
-.navbar img{
+.navigationbar .logo{
+    display: flex;
+    align-items: center;
+}
+.navigationbar .logo h3{
+    color: #5e2776;
+}
+.navigationbar img{
     height: 100%;
+}
+.navigationbar .leftnav{
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    justify-content: flex-end;
+    width: 45%;
+    padding-right: 4rem;
+}
+.navigationbar .leftnav a{
+    text-decoration: none;
+    color: black;
+    transition: all 0.3s ease;
+}
+.navigationbar .leftnav a:hover{
+    color: #ce165a;
+}
+.maindiv , .registerForm , .officerportal{
+    padding-top: 180px;
+    
+}
+.registerForm{
+    height: 100%;
+}
+.maindiv .banner{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 500px;
+}
+.maindiv .bannerimg{
+    overflow: hidden;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+.maindiv .banner .rep , .maindiv .banner .your , .maindiv .banner .comp , .maindiv .banner .here{
+    position: absolute;
+    color: aliceblue;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.458);
+    font-size: 5rem;
+}
+.maindiv .banner .rep{
+    top:40px;
+    left:0;
+}
+.maindiv .banner .your{
+    top:120px;
+    left: 0;
+}
+.maindiv .banner .comp {
+    top:200px;
+    left: 0;
+}
+.maindiv .banner .here{
+    top:280px;
+    left: 0; 
+}
+.maindiv .bannerimg img{
+    width: 100%;
+    object-fit: cover;
+}
+.mainquote h3{
+    color: white;
+}
+.quote{
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+.quote img{
+    z-index: -1;
+    position: absolute;
+    opacity: 40%;
+    mix-blend-mode: multiply;
+    height: 100%;
+    top: 0;
+    left: 38%;
+    transform: scale(2);
+}
+.quote h3{
+    z-index: 1;
+    line-height:2;
+    color: white;
+    font-weight: 500;
+    font-family: "Madimi One", sans-serif;
+}
+.quote .left i, .quote .right i{
+    color: #ce165a;
+    font-size: 4rem;
+}
+.mainsec .maincon{
+    background:#ce165a;
+    box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.621);
+    border: 1px solid #ce165a;
+    border-radius: 10px;
+    color: rgb(63, 8, 71);
+}
+.maincon a{
+    color: rgb(63, 8, 71);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.maincon a:hover{
+    color: rgb(250, 246, 243);;
+}
+
+.sec1 .maincon1{
+    background:#ce165a;
+    box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.621);
+    border: 1px solid #ce165a;
+    border-radius: 10px;
+    color: rgb(245, 209, 250);
+    
+}
+.sec1 .maincon1 p{
+    width: 70%;
+}
+.sec2 .maincon2{
+    position: relative;
+    background:#ce165a;
+    box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.621);
+    border: 1px solid #ce165a;
+    border-radius: 10px;
+    color: rgb(245, 209, 250);
+    
+}
+.sec2 .maincon2 p{
+    width: 70%;
+}
+.sec2 .maincon2 img{
+    opacity: 60%;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    mix-blend-mode: multiply;
+    height: 100%;
+}
+.regbtns{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.regbtns a{
+    border: 2px solid #5e2776;
+    border-radius: 5px;
+    padding: 20px 50px;
+    background-color: #5e2776;
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.regbtns a:hover{
+    background-color: rgb(246, 83, 194);
+    color: #000000;
+}
+.ackformdiv{
+    color: white;
+}
+.ackformdiv .searchbar{
+    display: flex;
+    justify-content: center;
+}
+.ackformdiv .searchbar form{
+    width: 70%;
+    display: flex;
+    gap: 15px;
+}
+.ackformdiv input[type=submit]{
+    width: 30%;
+    border: 1px solid #5e2776;
+    border-radius: 5px;
+    color: #5e2776;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+.formdiv p{
+    font-size: 12px;
+}
+.formdiv input[type=submit]{
+    border: 1px solid #ce165a;
+    border-radius: 5px;
+    background-color: #ce165a;
+    color: white;
+}
+.formdiv  input[type=submit]:hover{
+    background:none;
+    color: black;
+}
+.officermain .card img{
+    float:right;
+    height: 200px;
+    width: 200px;
+}
+.officermain .card i{
+    font-size: 1.2rem;
+    color: rgb(18, 243, 18);
+}
+.offsign{
+    background-color: #510d4a;
+    color: white;
+}
+.offsign .offbtn a{
+    color: white;
+    background-color: #5e2776;
+    border: 1px solid #5e2776;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 15px 35px;
+}
+.otpform{
+    padding-top: 200px;
+    height: 100vh;
+}
+.officerportal .row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mainportal{
+    background-color: white;
+}
+.reportlist td{
+    padding: 1rem 0.5rem !important;
+}
+.reportlist a{
+    border: 1px solid #ce165a;
+    border-radius: 5px;
+    background-color: #ce165a;
+    padding: 5px 20px;
+    color: white;
+    text-decoration: none;
+}
+.officerlist a{
+    border: 1px solid #ce165a;
+    border-radius: 5px;
+    background-color: #ce165a;
+    padding: 5px 20px;
+    color: white;
+    text-decoration: none;
+}
+.evid{
+    display: flex;
+    flex-direction: column;
+}
+.compstatus form{
+    display: flex;
+    flex-direction: column;
+}
+.compstatus button{
+    border: 1px solid #ce165a;
+    border-radius: 5px;
+    background-color: #ce165a;
+    padding: 5px 20px;
+    color: white;
 }
