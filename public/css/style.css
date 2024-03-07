@@ -290,4 +290,153 @@ body{
     background-color: #ce165a;
     padding: 5px 20px;
     color: white;
+    transition: all 0.4s ease;
+}
+.compstatus button:hover{
+    background:none;
+}
+.officerdash{
+    padding-top: 200px;
+    height: 100%;
+}
+.viewoffhead{
+    display: flex;
+    justify-content: space-between;
+}
+.viewoffhead a{
+    border: 1px solid #ce165a;
+    border-radius: 5px;
+    background-color: #ce165a;
+    color: white;
+    text-decoration: none;
+    padding: 5px 20px;
+    transition: all 0.4s ease;
+}
+.viewoffhead a:hover{
+    background: none;
+    color: black;
+}
+.updatestatus{
+    background-color: aqua;
+    padding: 5px 10px;
+    border: 1px solid aqua;
+    border-radius: 30px;
+}
+.complaintcomments .officeside{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.complaintcomments .officemsg{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    background-color: wheat;
+    width: 40%;
+    border: 1px solid wheat;
+    border-radius: 10px;
+}
+.complaintbody .officeside{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.complaintbody .officemsg{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+    background-color: wheat;
+    width: 40%;
+    border: 1px solid wheat;
+    border-radius: 10px;
+}
+.officetime{
+    position: absolute;
+    top: 5px;
+    right: 9px;
+    font-size: 12px;
+}
+.complaintcomments .userside{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.complaintcomments .usermsg{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: wheat;
+    width: 40%;
+    border: 1px solid wheat;
+    border-radius: 10px;
+}
+.complaintbody .userside{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.complaintbody .usermsg{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: wheat;
+    width: 40%;
+    border: 1px solid wheat;
+    border-radius: 10px;
+}
+.usertime{
+    position: absolute;
+    top: 5px;
+    right: 9px;
+    font-size: 12px;
+}
+.ackview{
+    padding-top: 180px;
+}
+.viewack{
+    background-color: white;
+
+}
+.viewack span i{
+    color: rgb(25, 251, 25);
+}
+.sendmessage form{
+    display: flex;
+    flex-direction: column;
+}
+.sendmessage button{
+    border: 1px solid #ce165a;
+    border-radius: 5px;
+    background-color: #ce165a;
+    padding: 5px 20px;
+    color: white;
+    transition: all 0.4s ease;
+}
+.sendmessage button:hover{
+    background:none;
+}
+.ackhead{
+    display: flex;
+    justify-content: space-between;
+}
+.acksts{
+    margin-right: 45px;
+}
+.acksts .approved{
+    background-color: rgb(28, 246, 28);
+    border: 1px solid rgb(28, 246, 28);
+    border-radius: 10px;
+    padding: 10px 30px;
+    font-size: 1.4rem;
+}
+.suspendbtn{
+    border: 1px solid rgb(215, 2, 2) !important;
+    background-color: rgb(215, 2, 2) !important;
+    color: white !important;
+    display: block !important;
+    margin: auto;
 }
