@@ -1,10 +1,9 @@
 
-
 const acknowledgementNumber = document.getElementById('acknowledgementNo')
 const acknowledgeError = document.getElementById('acknowledgeErr')
 const statusForm = document.getElementById('statusform')
 
-
+console.log("hgg")
 
 function validateAcknowledgement(){
 console.log("hiii");

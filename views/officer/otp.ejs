@@ -1,0 +1,30 @@
+<%-include('layout/header.ejs')  %>
+
+<section class="otpform ">
+    <div class="container">
+        <div class="maincon">
+            <% if(locals.err){ %>
+            <input type="hidden" id="err" value="<%= locals.err %>">
+            <% } %>
+            <div class="row d-flex justify-content-evenly my-4">
+                <div class="card col-md-6 p-4 officermain ">
+                    <div class="otphead"><h3>OTP Verification</h3><div class="timerview" id="timerview" style="display: none;"></div></div>
+                    <div class="formdiv px-4">
+                        <form action="/officer/otp" method="post" id="otpCheckForm">                                
+                            <div class="inputdiv my-3">
+                                <label for="otp">Enter OTP</label>
+                                <input type="text" name="otp" id="otpCheck" class="form-control">
+                                <p class="text-danger" id="otperr" style="display: none;"></p>
+                                </div>
+                            <input type="submit" class="btn form-control my-4" value="VERIFY OTP">
+                        </form>
+                        <button type="button" id="resendbtn" class="btn form-control my-4" style="display: none;">RESEND OTP</button>
+                </div>
+                
+            </div>  
+
+        </div>
+    </div>
+</section>
+<script src="/public/js/otpCheckScript.js"></script>
+<%-include('layout/footer.ejs')  %>

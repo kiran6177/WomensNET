@@ -1,0 +1,92 @@
+<%-include("layout/header.ejs")  %>
+<section class="registerForm">
+    <div class="container">
+        <div class="maincon">
+            <% if(locals.err){ %>
+                <input type="hidden" style="display: none;" id="err" value="<%= locals.err %>">
+            <% } %>
+            <div class="row d-flex justify-content-evenly my-4">
+                <div class="card col-md-10 p-4 officermain">
+                    <h3>Officer Registration</h3>
+                    <div class="formdiv px-4">
+                        <form action="/officer/register" method="post" enctype="multipart/form-data" id="officerRegForm">
+
+                            <div class="inputdiv my-3">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="name" class="form-control">
+                                <p class="text-danger" id="nameerr" style="display: none;"></p>
+                            </div>
+                            <div class="inputdiv my-3">
+                                <label for="designation">Designation</label>
+                                <input type="text" name="designation" id="designation" class="form-control">
+                                <p class="text-danger" id="designationerr" style="display: none;"></p>
+                            </div>
+                            <div class="inputdiv my-3">
+                                <label for="currentloc">Current Working Location</label>
+                                <input type="text" name="currentloc" id="currentloc" class="form-control">
+                                <p class="text-danger" id="currentlocerr" style="display: none;"></p>
+                            </div>
+                            <div class="inputdiv my-3">
+                                <label for="profileimg">Upload Image</label>
+                                <input type="file" name="profileimg" id="profileimg" class="form-control">
+                                <p class="text-danger" id="profileimgerr" style="display: none;"></p>
+                            </div>
+                            <div class="inputdiv my-3">
+                                <label for="mobile">Mobile</label>
+                                <input type="number" name="mobile" id="mobile" class="form-control">
+                                <p class="text-danger" id="mobileerr" style="display: none;"></p>
+                            </div>
+                            <div class="inputdiv my-3">
+                                <label for="email">E-mail</label>
+                                <input type="text" name="email" id="email" class="form-control">
+                                <p class="text-danger" id="emailerr" style="display: none;"></p>
+                            </div>
+                            <div class="inputdiv my-3">
+                                <label for="identityimg">Upload ID</label>
+                                <input type="file" name="identityimg" id="identityimg" class="form-control"
+                                    multiple>
+                                <p class="text-primary">Upload both front and back of ID.</p>
+                                <p class="text-danger" id="identityimgerr" style="display: none;"></p>
+                            </div>
+                            <h5 class="mt-5">Address</h5>
+                            <div class="inputdiv my-3">
+                                <label for="housedetails">House, Street, City Details</label>
+                                <input type="text" name="housedetails" id="housedetails" class="form-control">
+                                <p class="text-danger" id="houseerr" style="display: none;"></p>
+                            </div>
+                            <div class="inputdiv my-3">
+                                <label for="district">District</label>
+                                <input type="text" name="district" id="district" class="form-control">
+                                <p class="text-danger" id="districterr" style="display: none;"></p>
+                            </div>
+                            <div class="inputdiv my-3">
+                                <label for="state">State</label>
+                                <input type="text" name="state" id="state" class="form-control">
+                                <p class="text-danger" id="stateerr" style="display: none;"></p>
+                            </div>
+                            <div class="inputdiv my-3">
+                                <label for="country">Country</label>
+                                <input type="text" name="country" id="country" class="form-control">
+                                <p class="text-danger" id="countryerr" style="display: none;"></p>
+                            </div>
+                            <div class="inputdiv my-3">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" class="form-control">
+                                <p class="text-danger" id="passworderr" style="display: none;"></p>
+                            </div>
+                            <div class="inputdiv my-3">
+                                <label for="cpassword">Confirm Password</label>
+                                <input type="password" name="cpassword" id="cpassword" class="form-control">
+                                <p class="text-danger" id="cpassworderr" style="display: none;"></p>
+                            </div>
+                            <input type="submit" class="btn form-control" value="REGISTER">
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+</section>
+<script src="/public/js/officerRegScript.js"></script>
+<%-include("layout/footer.ejs")  %>
