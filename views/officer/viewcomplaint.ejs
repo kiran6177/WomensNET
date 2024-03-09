@@ -44,7 +44,6 @@
                     <% } %>
                     <div class="compstatus w-50">
                         <h5>Change Complaint Status</h5>
-                <form action="" id="complaintViewReg">
                         <select name="compstatus" id="compstatus" class="form-control my-3 w-50" <% if(locals.complaintdata.status === "Closed"){ %> disabled <% } %>>
                             <% if(locals.complaintdata.status === "Pending"){ %>
                             <option value="">Pending</option>
@@ -76,44 +75,65 @@
                         </select>
                         <p class="text-danger" id="compErr" style="display: none;"></p>
                         <h6 class="my-3">Leave an Update :</h6>
-                        <textarea name="complaintUpdate" id="updateBox" cols="30" rows="5"></textarea>
+                        <textarea name="complaintUpdate" id="updateBox" cols="30" rows="5" class="form-control"></textarea>
+                        <input type="hidden" id="complaint_Id" value="<%= locals.complaintdata._id %>">
                         <p class="text-danger" id="updateErr" style="display: none;"></p>
-                        <button type="submit" class="btn my-4">Update</button>
+                        <button type="button" id="updatebtn" class="btn my-4">Update</button>
                     </div>
                     <div class="complaintcomments">
                         <h5 class="my-5">Updations</h5>
-                        <p>12-02-23</p>
+                        <% let msgdate = "" %>
+                        <% if(locals.messages){ locals.messages.forEach(msg => { %>
+                        <%= msgdate != msg.date.toUTCString().split(' ').slice(1,4).join(' ') ? msg.date.toUTCString().split(' ').slice(1,4).join(' ') : "" %>
+                        <p><%= msgdate %></p>
+                        <% if(msg.owner == "Officer"){ %>
                         <div class="officeside my-3">
-                            <h6><span class="updatestatus">Status</span></h6>
+                            <h6><span class="updatestatus"><%= msg.status%></span></h6>
                             <div class="officemsg my-3">
-                                <p class="p-4">Can u provide more details about incident.</p>
-                                <span class="officetime"> 09:29 PM</span>
+                                <p class="p-4"><%= msg.message %></p>
+                                <% let date = new Date(msg.date)
+                                let hours = date.getHours();
+                                
+                                const minutes = ('0' + date.getMinutes()).slice(-2);
+                                let meridiem = 'AM';
+                                if (hours > 12) {
+                                    hours -= 12;
+                                    meridiem = 'PM';
+                                } else if (hours === 12) {
+                                    meridiem = 'PM';
+                                } else if (hours === 0) {
+                                    hours = 12;
+                                } 
+                                const formattedTime = hours + ':' + minutes + ' ' + meridiem; %>
+                                <span class="officetime"><%= formattedTime %></span>
                             </div>
                         </div>
-
+                        <% } %>
+                        <% if(msg.owner == "User"){ %>
                         <div class="userside my-3">
                             <div class="usermsg my-3">
-                                <p class="p-4">We invite you to join our officer portal as a crucial step towards supporting women empowerment and ensuring justice in cases of cyber crimes against women. Your participation and engagement in our platform can make a significant difference in investigating and addressing these sensitive issues effectively. By registering on our website, you become an integral part of a community dedicated to safeguarding women's rights and combating cyber threats. Your expertise, commitment, and dedication to upholding justice are invaluable assets in our collective mission to create a safer and more inclusive digital space for all. Together, let us stand strong in our resolve to protect and empower women, and to ensure that every case is thoroughly investigated and justice is served.</p>
-                                <span class="usertime"> 09:29 PM</span>
+                                <p class="p-4"><%= msg.message %></p>
+                                <% let date = new Date(msg.date)
+                                let hours = date.getHours();
+                                
+                                const minutes = ('0' + date.getMinutes()).slice(-2);
+                                let meridiem = 'AM';
+                                if (hours > 12) {
+                                    hours -= 12;
+                                    meridiem = 'PM';
+                                } else if (hours === 12) {
+                                    meridiem = 'PM';
+                                } else if (hours === 0) {
+                                    hours = 12;
+                                } 
+                                const formattedTime = hours + ':' + minutes + ' ' + meridiem; %>
+                                <span class="usertime"><%= formattedTime %></span>
                             </div>
                         </div>
-                        <div class="officeside my-3">
-                            <h6><span class="updatestatus">Status</span></h6>
-                            <div class="officemsg my-3">
-                                <p class="p-4">Can u provide more details about incident.</p>
-                                <span class="officetime"> 09:29 PM</span>
-                            </div>
-                        </div>
-
-                        <div class="userside my-3">
-                            <div class="usermsg my-3">
-                                <p class="p-4">We invite you to join our officer portal as a crucial step towards supporting women empowerment and ensuring justice in cases of cyber crimes against women. Your participation and engagement in our platform can make a significant difference in investigating and addressing these sensitive issues effectively. By registering on our website, you become an integral part of a community dedicated to safeguarding women's rights and combating cyber threats. Your expertise, commitment, and dedication to upholding justice are invaluable assets in our collective mission to create a safer and more inclusive digital space for all. Together, let us stand strong in our resolve to protect and empower women, and to ensure that every case is thoroughly investigated and justice is served.</p>
-                                <span class="usertime"> 09:29 PM</span>
-                            </div>
-                        </div>
+                        <% } %>
+                        <%  }); } %>
                         
                     </div>
-                </form>
                 </div>
             </div>
         </div>

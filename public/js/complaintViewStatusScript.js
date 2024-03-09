@@ -1,9 +1,9 @@
 const complaintStatus =document.getElementById('compstatus');
 const complaintError =document.getElementById('compErr')
-const updateBox =document.getElementById('updateBox');compErr
+const updateBox =document.getElementById('updateBox');
 const updateError =document.getElementById('updateErr')
-const complaintViewReg= document.getElementById('complaintViewReg')
-
+const updatebtn = document.getElementById('updatebtn')
+const complaint_Id = document.getElementById('complaint_Id')
 function validateStatusBox() {
     const statusVal = complaintStatus.value
 
@@ -17,9 +17,9 @@ function validateStatusBox() {
 }
 
 function validateUpdateBox() {
-    const updateVal = complaintStatus.value
+    const updateVal = updateBox.value
 
-    if (updateVal .trim() === "") {
+    if (updateVal.trim() === "") {
           updateError.style.display = "block"
           updateError.innerHTML = "Type Updates on the case!"
     } else {
@@ -31,13 +31,47 @@ function validateUpdateBox() {
 complaintStatus.addEventListener('blur', validateStatusBox);
 updateBox .addEventListener('blur', validateUpdateBox);
 
-
-complaintViewReg.addEventListener('submit',function(e){
-
-    validateStatusBox();
-    validateUpdateBox();
-
-    if(complaintError.innerHTML ||  updateError.innerHTML){
-        e.preventDefault();
+async function submitMessage(message,status,complaint_Id){
+    try {
+        const data = {
+            message,
+            status,
+            complaint_Id
+        }
+        const res = await fetch('/officer/viewcomplaint',{
+            method:'post',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(data)
+        })
+        const resData = await res.json()
+        if(resData.success){
+            window.location.reload()
+        }else{
+            Toastify({
+                text:resData.err,
+                duration: 3000,
+                newWindow: true,
+                gravity: "top", 
+                position: "center",
+                stopOnFocus: true, 
+                style: {
+                    background: "red",
+                },
+                offset:{
+                    y:80
+                }
+                }).showToast();
+        }
+    } catch (error) {
+        console.log(error.message)
     }
+}
+
+updatebtn.addEventListener('click',()=>{
+    console.log(updateBox.value)
+    console.log(complaintStatus.value)
+    console.log(complaint_Id.value)
+    submitMessage(updateBox.value,complaintStatus.value,complaint_Id.value)
 })

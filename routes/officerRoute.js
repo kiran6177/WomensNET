@@ -16,4 +16,6 @@ officerRoute.get("/logout", officerMiddleWare.isLogin,officerAuth.logout);
 
 officerRoute.get('/',officerMiddleWare.isLogin,officerFeat.loadPortal)
 officerRoute.get('/viewcomplaint',officerMiddleWare.isLogin,officerFeat.loadComplaint)
+officerRoute.post('/viewcomplaint',officerMiddleWare.isLogin,officerFeat.complaintUpdate)
+
 module.exports = officerRoute;
