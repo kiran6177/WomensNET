@@ -1,3 +1,4 @@
+
 const express = require("express");
 const officerRoute = express.Router();
 const officerAuth = require("../controller/officerController/officerAuth");
@@ -16,3 +17,4 @@ officerRoute.get("/logout", officerMiddleWare.isLogin,officerAuth.logout);
 
 officerRoute.get('/',officerMiddleWare.isLogin,officerFeat.loadPortal)
 module.exports = officerRoute;
+
