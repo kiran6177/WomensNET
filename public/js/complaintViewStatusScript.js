@@ -69,9 +69,15 @@ async function submitMessage(message,status,complaint_Id){
     }
 }
 
-updatebtn.addEventListener('click',()=>{
+updatebtn.addEventListener('click',(e)=>{
+    validateStatusBox()
+    validateUpdateBox()
     console.log(updateBox.value)
     console.log(complaintStatus.value)
     console.log(complaint_Id.value)
+    if(updateError.innerHTML != "" || complaintError.innerHTML != ""){
+        e.preventDefault()
+    }else{
     submitMessage(updateBox.value,complaintStatus.value,complaint_Id.value)
+    }
 })

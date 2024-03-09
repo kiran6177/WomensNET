@@ -10,7 +10,6 @@ const loadLogin = async(req,res)=>{
 const login = async (req,res)=>{
     try {
         const {email,password} = req.body
-        console.log(email,password)
         const officerExist = await Officer.findOne({email:email})
         if(officerExist){
             if(officerExist.password === password){

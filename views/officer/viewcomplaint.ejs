@@ -44,7 +44,7 @@
                     <% } %>
                     <div class="compstatus w-50">
                         <h5>Change Complaint Status</h5>
-                        <select name="compstatus" id="compstatus" class="form-control my-3 w-50" <% if(locals.complaintdata.status === "Closed"){ %> disabled <% } %>>
+                        <select name="compstatus" id="compstatus" class="form-control my-3 w-50" <% if(locals.complaintdata.status === "Closed" || locals.complaintdata.status === "Suspended"){ %> disabled <% } %>>
                             <% if(locals.complaintdata.status === "Pending"){ %>
                             <option value="">Pending</option>
                             <option value="Not Credible">Not Credible</option>
@@ -88,7 +88,12 @@
                         <p><%= msgdate %></p>
                         <% if(msg.owner == "Officer"){ %>
                         <div class="officeside my-3">
-                            <h6><span class="updatestatus"><%= msg.status%></span></h6>
+                            <h6><% if(msg.status === "Approved"){ %><span class="approved1">Approved</span>
+                                <% }else if(msg.status === "Pending"){ %><span class="pending1">Pending</span>
+                                <% }else if(msg.status === "Not Credible"){ %><span class="notcredible1">Not Credible</span>
+                                <% }else if(msg.status === "Closed"){ %><span class="closed1">Closed</span>
+                                <% }else if(msg.status === "Working On It"){ %><span class="working1">Working On It</span>
+                                <% }else if(msg.status === "Suspended"){ %><span class="suspended1">Suspended</span><% } %></h6>
                             <div class="officemsg my-3">
                                 <p class="p-4"><%= msg.message %></p>
                                 <% let date = new Date(msg.date)

@@ -1,0 +1,39 @@
+<%-include('userLayout/header.ejs')  %>
+<section class="registerForm">
+    <div class="container">
+        <div class="maincon">
+
+            <div class="row d-flex justify-content-evenly my-4">
+                <div class="card col-md-10 p-4 officermain">
+                    <h3>Know Officers Here</h3>
+                    <% if(locals.officers && locals.officers.length > 0){ locals.officers.forEach(officer => { %>
+                    <div class="card p-4">
+                        <div class="card-title">
+                            <h6>NAME : <%= officer.name %> </h6>
+                        </div>
+                        <div class="card-body p-0 ">
+                            <img src="/assets/<%= officer.profileImage %>" alt="">
+                            <p>DESIGNATION : <%= officer.designation%> </p>
+                            <p>CURRENT WORKING LOCATION : <%= officer.workingLocation %></p>
+                            <p>EMAIL : <%= officer.email %></p>
+                            <p>PHONE : <%= officer.mobile %></p>
+                            <p>CREDIBILITY STATUS : <% if(officer.isApproved === 1) {%> APPROVED <span><i class="fa-regular fa-circle-check"></i></span> <% } %></p>
+                            <p>ENCOUNTERED CASE LIST : <%= officer.encounteredCases %></p>
+                        </div>
+                    </div>
+                    <%  });}else{ %>
+                        <div class="card p-4">
+                            <div class="card-title">
+                                <h6 class="text-center">NO REGISTERED OFFICER.</h6>
+                            </div>
+                            
+                        </div>
+                   <% } %>
+                </div>
+                
+            </div>  
+
+        </div>
+    </div>
+</section>
+<%-include('userLayout/footer.ejs')  %>
