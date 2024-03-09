@@ -16,7 +16,7 @@ const complaintSchema = new mongoose.Schema({
   suspectName: { type: String },
   suspectMobile: { type: Number },
   suspectSocial: { type: String },
-  otherDetails:{type:String},
+  otherDetails: { type: String },
   reportername: { type: String },
   reporteremail: { type: String },
   reporterMobile: { type: Number },
@@ -25,7 +25,8 @@ const complaintSchema = new mongoose.Schema({
   state: { type: String },
   country: { type: String },
   officer_Id: { type: mongoose.Schema.Types.ObjectId, ref: "officer" },
-  complaint_Id:{type:Number}
+  complaint_Id: { type: Number },
+  status: { type: String, default: "Pending" },
 });
-const complaintModel=mongoose.model("complaint",complaintSchema)
-module.exports=complaintModel
+const complaintModel = mongoose.model("complaint", complaintSchema);
+module.exports = complaintModel;
