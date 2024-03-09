@@ -52,14 +52,15 @@ const RegisterComplaint = async (req, res) => {
     console.log(complaint);
     const createComplaint = await complaintModel.create(complaint);
     console.log(createComplaint);
-    res.redirect("/complaintSuccess");
+    res.redirect(`/complaintSuccess?id=${createComplaint.complaint_Id}`);
   } catch (error) {
     console.error(error);
   }
 };
 const loadComplaintSuccess = async (req, res) => {
   try {
-    res.render("user/complaintSuccessPage");
+    const {id} = req.query
+    res.render("user/complaintSuccessPage",{complaint_Id:id});
   } catch (error) {
     console.error(error);
   }
