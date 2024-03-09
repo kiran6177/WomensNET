@@ -5,7 +5,7 @@ const complaintSchema = new mongoose.Schema({
     required: true,
   },
   date: {
-    type: String,
+    type: Date,
     required: true,
   },
   description: {
@@ -16,12 +16,15 @@ const complaintSchema = new mongoose.Schema({
   suspectName: { type: String },
   suspectMobile: { type: Number },
   suspectSocial: { type: String },
-  name: { type: String },
-  email: { type: String },
-  mobile: { type: Number },
-  house: { type: String },
+  otherDetails:{type:String},
+  reportername: { type: String },
+  reporteremail: { type: String },
+  reporterMobile: { type: Number },
+  houseDetail: { type: String },
   district: { type: String },
   state: { type: String },
   country: { type: String },
   officer_Id: { type: mongoose.Schema.Types.ObjectId, ref: "officer" },
 });
+const complaintModel=mongoose.model("complaint",complaintSchema)
+module.exports=complaintModel
