@@ -1,6 +1,8 @@
 const complaintModel = require("../../model/complaintSchema");
 const officerModel = require("../../model/officerSchema");
-const {customAlphabet}=require('nanoid')   
+const messageModel = require("../../model/messageSchema");
+const { customAlphabet } = require("nanoid");
+const { default: mongoose } = require("mongoose");
 const loadHomePage = async (req, res) => {
   try {
     res.render("user/home");
@@ -27,28 +29,27 @@ const loadComplaintAnonymous = async (req, res) => {
 };
 const RegisterComplaint = async (req, res) => {
   try {
-    const numberlimit=14
-    const numberRange="0123456789"
-    const generateId=customAlphabet(numberRange,numberlimit)
-    const id = generateId()
-    
-    console.log(id)
+    const numberlimit = 14;
+    const numberRange = "0123456789";
+    const generateId = customAlphabet(numberRange, numberlimit);
+    const id = generateId();
 
-
-
+    console.log(id);
 
     console.log(req.files);
     const presentedEvidences = req.files.map((images) => images.filename);
-   
 
-    const complaint = { evidence: presentedEvidences,complaint_Id:parseInt(id)};
+    const complaint = {
+      evidence: presentedEvidences,
+      complaint_Id: parseInt(id),
+    };
 
     for (const key in req.body) {
       if (req.body[key] != "") {
         complaint[key] = req.body[key];
       }
     }
-    
+
     console.log(complaint);
     const createComplaint = await complaintModel.create(complaint);
     console.log(createComplaint);
@@ -65,16 +66,37 @@ const loadComplaintSuccess = async (req, res) => {
   }
 };
 
-const searchComplaintStatus=async(req,res)=>{
+const searchComplaintStatus = async (req, res) => {
   try {
-    const {search}=req.query
-    const searchComplaint=await complaintModel.findOne({complaint_Id:parseInt(search)}).populate('officer_Id')
-    console.log(searchComplaint)
-    res.render("user/complaintStatus",{searchComplaint})
+    const { search } = req.query;
+    
+    const searchComplaint = await complaintModel
+      .findOne({ complaint_Id: parseInt(search) })
+      .populate("officer_Id");
+      const complaintObjectId= new mongoose.Types.ObjectId(searchComplaint._id)
+      console.log('objid',searchComplaint._id)
+      const complaintMessage=await messageModel.aggregate([{$match:{complaint_Id:complaintObjectId}},{$sort:{date:1}}])
+    console.log(searchComplaint);
+    console.log(complaintMessage)
+    res.render("user/complaintStatus", { searchComplaint,complaintMessage});
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
+const sendMessage = async (req, res) => {
+  try {
+    const { message, complaintId } = req.body;
+    const messagesent = {
+      message: message,
+      complaint_Id: complaintId,
+      owner: "User",
+    };
+    const createMessage = await messageModel.create(messagesent);
+    res.status(200).json({ message: "Message sent Successfully" });
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 module.exports = {
   loadHomePage,
@@ -82,5 +104,6 @@ module.exports = {
   loadComplaintAnonymous,
   RegisterComplaint,
   loadComplaintSuccess,
-  searchComplaintStatus
+  searchComplaintStatus,
+  sendMessage,
 };
