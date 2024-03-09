@@ -27,7 +27,12 @@
 
                                   <%  if(complaintdetail.owner == "Officer"){%>
                                         <div class="officeside my-3">
-                                            <h6><span class="updatestatus"><%=complaintdetail.status%></span></h6>
+                                            <h6><% if(complaintdetail.status === "Approved"){ %><span class="approved1">Approved</span>
+                                                <% }else if(complaintdetail.status === "Pending"){ %><span class="pending1">Pending</span>
+                                                <% }else if(complaintdetail.status === "Not Credible"){ %><span class="notcredible1">Not Credible</span>
+                                                <% }else if(complaintdetail.status === "Closed"){ %><span class="closed1">Closed</span>
+                                                <% }else if(complaintdetail.status === "Working On It"){ %><span class="working1">Working On It</span>
+                                                <% }else if(complaintdetail.status === "Suspended"){ %><span class="suspended1">Suspended</span><% } %></h6>
                                             <div class="officemsg my-3">
                                                 <p class="p-4"><%=complaintdetail.message%></p>
                                                 <span class="officetime"><%=complaintdetail.date.toLocaleString().split(',')[1]%> </span>
