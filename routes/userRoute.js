@@ -10,5 +10,6 @@ userRouter.post("/register",uploads.array('evidence'), userController.RegisterCo
 userRouter.get("/registerAnonymously", userController.loadComplaintAnonymous);
 userRouter.post("/registerAnonymously",uploads.array('evidence'),userController.RegisterComplaint)
 userRouter.get("/complaintSuccess",userController.loadComplaintSuccess)
+userRouter.get("/search",userController.searchComplaintStatus)
 
 module.exports = userRouter;

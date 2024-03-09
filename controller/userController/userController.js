@@ -65,10 +65,22 @@ const loadComplaintSuccess = async (req, res) => {
   }
 };
 
+const searchComplaintStatus=async(req,res)=>{
+  try {
+    const {search}=req.query
+    const searchComplaint=await complaintModel.findOne({complaint_Id:parseInt(search)}).populate('officer_Id')
+    console.log(searchComplaint)
+    res.render("user/complaintStatus",{searchComplaint})
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 module.exports = {
   loadHomePage,
   loadRegisterComplaint,
   loadComplaintAnonymous,
   RegisterComplaint,
   loadComplaintSuccess,
+  searchComplaintStatus
 };
