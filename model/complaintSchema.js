@@ -25,6 +25,7 @@ const complaintSchema = new mongoose.Schema({
   state: { type: String },
   country: { type: String },
   officer_Id: { type: mongoose.Schema.Types.ObjectId, ref: "officer" },
+  complaint_Id:{type:Number}
 });
 const complaintModel=mongoose.model("complaint",complaintSchema)
 module.exports=complaintModel
