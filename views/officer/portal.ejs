@@ -1,0 +1,36 @@
+<%-include('layout/header.ejs')  %>
+<section class="officerportal mb-5">
+    <div class="container">
+        <div class="row ">
+            <div class="mainportal col-md-12 p-5">
+                <h3>OFFICER PORTAL</h3>
+                <div class="profile mb-5">
+                    <% if(locals.officerDet){ %>
+                    <div class="proimg"><img src="/assets/<%= locals.officerDet.profileImage %>" width="200px" height="200px" alt=""></div>
+                    <h6>Name : <%= locals.officerDet.name %></h6>
+                    <p>Designation : <%= locals.officerDet.designation %></p>
+                    <p>E-mail : <%= locals.officerDet.email %> </p>
+                    <p>Mobile : <%= locals.officerDet.mobile %></p>
+                        <% } %>
+                </div>
+                <div class="reportlist">
+                    <h5>Complaints List</h5>
+                    <table class="table">
+                        <tr><th>Complaint ID</th>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td>653265765</td>
+                            <td>Anonymous</td>
+                            <td>NA</td>
+                            <td><a href="">VIEW</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<%-include('layout/footer.ejs')  %>

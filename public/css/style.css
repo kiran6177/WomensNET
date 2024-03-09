@@ -249,6 +249,20 @@ body{
     padding-top: 200px;
     height: 100vh;
 }
+.otphead{
+    display: flex;
+    justify-content: space-between  ;
+}
+#resendbtn{
+    border: 1px solid #ce165a;
+    border-radius: 5px;
+    background-color: #ce165a;
+    color: white;
+}
+#resendbtn:hover{
+    background:none;
+    color: black;
+}
 .officerportal .row{
     display: flex;
     justify-content: center;

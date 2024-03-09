@@ -297,9 +297,26 @@ officerRegForm.addEventListener('submit', function (e) {
     confirmpassValidate();
     
 
-
     if (nameError.innerHTML || designationError.innerHTML || currentlocError.innerHTML || imageError.innerHTML || emailError.innerHTML
        || mobileError.innerHTML|| houseError.innerHTML || districtError.innerHTML || stateError.innerHTML || countryError.innerHTML ||  passwordError.innerHTML ||confirmpasswordError.innerHTML) {
         e.preventDefault()
     }
 })
+
+const err = document.getElementById('err')
+if(err){
+    Toastify({
+    text:err.value,
+    duration: 3000,
+    newWindow: true,
+    gravity: "top", 
+    position: "center",
+    stopOnFocus: true, 
+    style: {
+        background: "red",
+    },
+    offset:{
+        y:80
+    }
+    }).showToast();
+}
