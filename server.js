@@ -26,7 +26,7 @@ app.use(
 app.use('/assets',express.static(path.join(__dirname,'./assets')))
 app.use(nocache());
 
-// app.use('/admin',adminRoute)
+app.use('/admin', adminRoute)
 app.use('/officer',officerRoute) 
 app.use("/", userRoute);
 
