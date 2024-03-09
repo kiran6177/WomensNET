@@ -61,3 +61,21 @@ regform.addEventListener('submit', function (e) {
         e.preventDefault()
     }
 })
+
+const err = document.getElementById('err')
+if(err){
+    Toastify({
+    text:err.value,
+    duration: 3000,
+    newWindow: true,
+    gravity: "top", 
+    position: "center",
+    stopOnFocus: true, 
+    style: {
+        background: "red",
+    },
+    offset:{
+        y:80
+    }
+    }).showToast();
+}

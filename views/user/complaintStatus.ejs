@@ -2,7 +2,14 @@
 <section class="ackview my-5">
             <div class="container">
                 <div class="viewack p-5">
-                    <div class="ackhead"><h4>Complaint ID :<%=searchComplaint.complaint_Id%></h4><div class="acksts"><span class="approved">Approved</span></div></div>
+                    <div class="ackhead"><h4>Complaint ID :<%=searchComplaint.complaint_Id%></h4><div class="acksts">
+                        <% if(searchComplaint.status === "Approved"){ %><span class="approved">Approved</span>
+                        <% }else if(searchComplaint.status === "Pending"){ %><span class="pending">Pending</span>
+                        <% }else if(searchComplaint.status === "Not Credible"){ %><span class="notcredible">Not Credible</span>
+                        <% }else if(searchComplaint.status === "Closed"){ %><span class="closed">Closed</span>
+                        <% }else if(searchComplaint.status === "Working On It"){ %><span class="working">Working On It</span>
+                        <% }else if(searchComplaint.status === "Suspended"){ %><span class="suspended">Suspended</span><% } %>
+                    </div></div>
                     <h5 class="my-3">Officer Details</h5>
                     <h6>Name :<%=searchComplaint.officer_Id.name%></h6>
                     <img src="/assets/<%=searchComplaint.officer_Id.profileImage%>" width="200px" height="200px" class="my-3" alt="">
@@ -18,7 +25,7 @@
                               <%  complaintMessage.forEach((complaintdetail)=>{%>
                                     <p><%=complaintdetail.date.toLocaleString().split(',')[0]%></p>
 
-                                  <%  if(complaintdetail.owner == "User"){%>
+                                  <%  if(complaintdetail.owner == "Officer"){%>
                                         <div class="officeside my-3">
                                             <h6><span class="updatestatus"><%=complaintdetail.status%></span></h6>
                                             <div class="officemsg my-3">
@@ -26,8 +33,8 @@
                                                 <span class="officetime"><%=complaintdetail.date.toLocaleString().split(',')[1]%> </span>
                                             </div>
                                         </div>
-                                   <% }%>
-                               <% if(complaintdetail.owner == "Officer"){%>
+                                   <% } %>
+                               <% if(complaintdetail.owner == "User"){%>
                                     <div class="userside my-3">
                                         <div class="usermsg my-3">
                                             <p class="p-4"><%=complaintdetail.message%></p>
@@ -43,21 +50,6 @@
                           <% }%>
                            
 
-                            
-                            <!-- <div class="officeside my-3">
-                                <h6><span class="updatestatus">Status</span></h6>
-                                <div class="officemsg my-3">
-                                    <p class="p-4">Can u provide more details about incident.</p>
-                                    <span class="officetime"> 09:29 PM</span>
-                                </div>
-                            </div> -->
-
-                            <!-- <div class="userside my-3">
-                                <div class="usermsg my-3">
-                                    <p class="p-4">We invite you to join our officer portal as a crucial step towards supporting women empowerment and ensuring justice in cases of cyber crimes against women. Your participation and engagement in our platform can make a significant difference in investigating and addressing these sensitive issues effectively. By registering on our website, you become an integral part of a community dedicated to safeguarding women's rights and combating cyber threats. Your expertise, commitment, and dedication to upholding justice are invaluable assets in our collective mission to create a safer and more inclusive digital space for all. Together, let us stand strong in our resolve to protect and empower women, and to ensure that every case is thoroughly investigated and justice is served.</p>
-                                    <span class="usertime"> 09:29 PM</span>
-                                </div>
-                            </div> -->
                             <input type="hidden" value="<%=searchComplaint._id%>" id="complaintId">
                            
                             <div class="sendmessage w-50">
@@ -67,8 +59,9 @@
                             <button type="button" class="btn my-4" id="sendbtn">Send</button>
                             </form>
                             </div>
-
-                            <button type="button" class="btn w-75 suspendbtn mt-5">REQUEST TO SUSPEND CASE</button>
+                            <% if(searchComplaint.status !== "Closed" && searchComplaint.status !== "Suspended"){ %>
+                            <button type="button" class="btn w-75 suspendbtn mt-5" id="suspend" >REQUEST TO SUSPEND CASE</button>
+                            <% } %>
                     </div>
                 </div>
             </div>

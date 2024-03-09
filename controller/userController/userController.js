@@ -3,6 +3,7 @@ const officerModel = require("../../model/officerSchema");
 const messageModel = require("../../model/messageSchema");
 const { customAlphabet } = require("nanoid");
 const { default: mongoose } = require("mongoose");
+const Officer = require("../../model/officerSchema");
 const loadHomePage = async (req, res) => {
   try {
     res.render("user/home");
@@ -34,9 +35,7 @@ const RegisterComplaint = async (req, res) => {
     const generateId = customAlphabet(numberRange, numberlimit);
     const id = generateId();
 
-    console.log(id);
-
-    console.log(req.files);
+  
     const presentedEvidences = req.files.map((images) => images.filename);
 
     const complaint = {
@@ -50,9 +49,7 @@ const RegisterComplaint = async (req, res) => {
       }
     }
 
-    console.log(complaint);
     const createComplaint = await complaintModel.create(complaint);
-    console.log(createComplaint);
     res.redirect(`/complaintSuccess?id=${createComplaint.complaint_Id}`);
   } catch (error) {
     console.error(error);
@@ -75,10 +72,8 @@ const searchComplaintStatus = async (req, res) => {
       .findOne({ complaint_Id: parseInt(search) })
       .populate("officer_Id");
       const complaintObjectId= new mongoose.Types.ObjectId(searchComplaint._id)
-      console.log('objid',searchComplaint._id)
       const complaintMessage=await messageModel.aggregate([{$match:{complaint_Id:complaintObjectId}},{$sort:{date:1}}])
-    console.log(searchComplaint);
-    console.log(complaintMessage)
+
     res.render("user/complaintStatus", { searchComplaint,complaintMessage});
   } catch (error) {
     console.error(error);
@@ -99,6 +94,30 @@ const sendMessage = async (req, res) => {
   }
 };
 
+const loadOfficers = async (req,res)=>{
+  try {
+      const officers = await Officer.find({isApproved:1})
+      res.render('user/knowofficers',{officers})
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+const suspendComplaint = async (req,res)=>{
+  try {
+    const {id} = req.query
+    console.log(id)
+    const suspend = await complaintModel.findByIdAndUpdate({_id:id},{$set:{status:"Suspended"}})
+    if(suspend){
+      res.json({success:"Case Suspended Successfully!!"})
+    }else{
+      res.json({err:"Cannot suspend case."})
+    }
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
 module.exports = {
   loadHomePage,
   loadRegisterComplaint,
@@ -107,4 +126,6 @@ module.exports = {
   loadComplaintSuccess,
   searchComplaintStatus,
   sendMessage,
+  loadOfficers,
+  suspendComplaint
 };

@@ -21,3 +21,54 @@ sendBtn.addEventListener("click", async () => {
     console.error(error);
   }
 });
+
+async function suspendComplaint(complaint_Id){
+  try {
+    const res = await fetch(`/suspendcomplaint?id=${complaint_Id}`)
+    const data = await res.json()
+    if(data.success){
+      Toastify({
+        text:data.success,
+        duration: 3000,
+        newWindow: true,
+        gravity: "top", 
+        position: "center",
+        stopOnFocus: true, 
+        style: {
+            background: "rgb(28, 148, 246)",
+        },
+        offset:{
+            y:80
+        }
+        }).showToast();
+        setTimeout(()=>{
+          window.location.reload()
+        },3000)
+    }else{
+      Toastify({
+        text:data.err,
+        duration: 3000,
+        newWindow: true,
+        gravity: "top", 
+        position: "center",
+        stopOnFocus: true, 
+        style: {
+            background: "red",
+        },
+        offset:{
+            y:80
+        }
+        }).showToast();
+    }
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+const suspend = document.getElementById('suspend')
+if(suspend){
+  suspend.addEventListener('click',()=>{
+    const complaint_Id = document.getElementById("complaintId").value
+    suspendComplaint(complaint_Id)
+  })
+}

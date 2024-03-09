@@ -6,7 +6,6 @@ const { ObjectId } = require('mongodb')
 const loadPortal = async(req,res)=>{
     try {
         const officerDet = await Officer.findById({_id:req.session.officer})
-        console.log(officerDet)
         const complaintdata = await Complaint.find({officer_Id:req.session.officer})
         res.render('officer/portal',{officerDet,complaintdata})
     } catch (error) {
@@ -20,7 +19,6 @@ const loadComplaint = async (req,res)=>{
         const officerDet = await Officer.findById({_id:req.session.officer})
         const complaintdata = await Complaint.findById({_id:id})
         const messages = await Message.aggregate([{$match:{complaint_Id:new ObjectId(id)}},{$sort:{date:1}}])
-        console.log(messages)
         res.render('officer/viewcomplaint',{officerDet,complaintdata,messages})
     } catch (error) {
         console.log(error.message)
@@ -30,12 +28,15 @@ const loadComplaint = async (req,res)=>{
 const complaintUpdate = async (req,res)=>{
     try {
         const data = req.body
-        console.log(data)
         const dataToStore = {
             message:data.message,
             status:data.status,
             complaint_Id:new ObjectId(data.complaint_Id),
             owner:"Officer"
+        }
+        const statusChange = await Complaint.findByIdAndUpdate({_id:data.complaint_Id},{$set:{status:data.status}})
+        if(data.status === "Closed"){
+            const officerCountUpdate = await Officer.findByIdAndUpdate({_id:statusChange.officer_Id},{$inc:{encounteredCases:1}})
         }
         const messageCreate = await Message.create(dataToStore)
         if(messageCreate){

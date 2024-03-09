@@ -333,10 +333,40 @@ body{
     background: none;
     color: black;
 }
-.updatestatus{
-    background-color: aqua;
+.approved1{
+    background-color: rgb(28, 246, 28);
+    border: 1px solid rgb(28, 246, 28);
     padding: 5px 10px;
-    border: 1px solid aqua;
+    border-radius: 30px;
+}
+.pending1{
+    background-color: rgb(28, 148, 246);
+    border: 1px solid rgb(28, 148, 246);
+    padding: 5px 10px;
+    border-radius: 30px;
+}
+.working1{
+    background-color: rgb(228, 246, 28);
+    border: 1px solid rgb(228, 246, 28);
+    padding: 5px 10px;
+    border-radius: 30px;
+}
+.closed1{
+    background-color: rgb(28, 246, 28);
+    border: 1px solid rgb(28, 246, 28);
+    padding: 5px 10px;
+    border-radius: 30px;
+}
+.suspended1{
+    background-color: red;
+    border: 1px solid red;
+    padding: 5px 10px;
+    border-radius: 30px;
+}
+.notcredible1{
+    background-color: rgb(246, 28, 35);
+    border: 1px solid rgb(246, 28, 35);
+    padding: 5px 10px;
     border-radius: 30px;
 }
 .complaintcomments .officeside{
@@ -443,9 +473,44 @@ body{
 .acksts{
     margin-right: 45px;
 }
-.acksts .approved{
+.approved{
     background-color: rgb(28, 246, 28);
     border: 1px solid rgb(28, 246, 28);
+    border-radius: 10px;
+    padding: 10px 30px;
+    font-size: 1.4rem;
+}
+.pending{
+    background-color: rgb(28, 148, 246);
+    border: 1px solid rgb(28, 148, 246);
+    border-radius: 10px;
+    padding: 10px 30px;
+    font-size: 1.4rem;
+}
+.working{
+    background-color: rgb(228, 246, 28);
+    border: 1px solid rgb(228, 246, 28);
+    border-radius: 10px;
+    padding: 10px 30px;
+    font-size: 1.4rem;
+}
+.closed{
+    background-color: rgb(28, 246, 28);
+    border: 1px solid rgb(28, 246, 28);
+    border-radius: 10px;
+    padding: 10px 30px;
+    font-size: 1.4rem;
+}
+.notcredible{
+        background-color: rgb(246, 28, 35);
+        border: 1px solid rgb(246, 28, 35);
+        border-radius: 10px;
+        padding: 10px 30px;
+        font-size: 1.4rem;
+}
+.suspended{
+    background-color: red;
+    border: 1px solid red;
     border-radius: 10px;
     padding: 10px 30px;
     font-size: 1.4rem;

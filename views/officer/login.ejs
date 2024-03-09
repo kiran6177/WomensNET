@@ -2,7 +2,9 @@
 <section class="otpform ">
     <div class="container">
         <div class="maincon">
-
+            <% if(locals.err){ %>
+                <input type="hidden" style="display: none;" id="err" value="<%= locals.err %>">
+            <% } %>
             <div class="row d-flex justify-content-evenly my-4">
                 <div class="card col-md-6 p-4 officermain ">
                     <h3>OFFICER LOGIN</h3>

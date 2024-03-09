@@ -19,13 +19,20 @@
                         <tr><th>Complaint ID</th>
                         <th>Name</th>
                         <th>Mobile</th>
+                        <th>Status</th>
                         <th>Action</th>
                         </tr>
                         <% if(locals.complaintdata && locals.complaintdata.length > 0){ locals.complaintdata.forEach(complaint => { %>
                         <tr>
-                            <td><%= complaint.complaint_Id %></td>
+                            <td>Confidential</td>
                             <td><% if(complaint.reportername){ %><%= complaint.reportername %><% }else{ %>NA<% } %></td>
                             <td><% if(complaint.reportermobile){ %><%= complaint.reportermobile %><% }else{ %>NA<% } %></td>
+                            <td><% if(complaint.status === "Approved"){ %><span class="approved1">Approved</span>
+                                <% }else if(complaint.status === "Pending"){ %><span class="pending1">Pending</span>
+                                <% }else if(complaint.status === "Not Credible"){ %><span class="notcredible1">Not Credible</span>
+                                <% }else if(complaint.status === "Closed"){ %><span class="closed1">Closed</span>
+                                <% }else if(complaint.status === "Working On It"){ %><span class="working1">Working On It</span>
+                                <% }else if(complaint.status === "Suspended"){ %><span class="suspended1">Suspended</span><% } %></td>
                             <td><a href="/officer/viewcomplaint?id=<%= complaint._id %>">VIEW</a></td>
                         </tr>
                         <% })} %>
