@@ -21,12 +21,14 @@
                         <th>Mobile</th>
                         <th>Action</th>
                         </tr>
+                        <% if(locals.complaintdata && locals.complaintdata.length > 0){ locals.complaintdata.forEach(complaint => { %>
                         <tr>
-                            <td>653265765</td>
-                            <td>Anonymous</td>
-                            <td>NA</td>
-                            <td><a href="">VIEW</a></td>
+                            <td><%= complaint.complaint_Id %></td>
+                            <td><% if(complaint.reportername){ %><%= complaint.reportername %><% }else{ %>NA<% } %></td>
+                            <td><% if(complaint.reportermobile){ %><%= complaint.reportermobile %><% }else{ %>NA<% } %></td>
+                            <td><a href="/officer/viewcomplaint?id=<%= complaint._id %>">VIEW</a></td>
                         </tr>
+                        <% })} %>
                     </table>
                 </div>
             </div>
