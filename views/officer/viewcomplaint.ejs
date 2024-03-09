@@ -1,0 +1,123 @@
+<%-include('layout/header.ejs')  %>
+<section class="officerportal mb-5">
+    <div class="container">
+        <div class="row ">
+            <div class="mainportal col-md- p-5">
+                <h3>OFFICER PORTAL</h3>
+                <% if(locals.complaintdata){ %>
+                <h5>Complaint Details</h5>
+                <div class="profile mt-3 mb-5">
+                    <h6>Name : <% if(locals.complaintdata.reportername){ %><%= locals.complaintdata.reportername %><% }else{ %>NA<% } %></h6>
+                    <p>E-mail : <% if(locals.complaintdata.reporteremail){ %><%= locals.complaintdata.reporteremail %><% }else{ %>NA<% } %></p>
+                    <p>Mobile : <% if(locals.complaintdata.reportermobile){ %><%= locals.complaintdata.reportermobile %><% }else{ %>NA<% } %></p>
+                    <p>Address : <br> <% if(locals.complaintdata.houseDetail){ %><%= locals.complaintdata.houseDetail %><% }else{ %>NA<% } %> <br> <% if(locals.complaintdata.district){ %><%= locals.complaintdata.district %><% }else{ %>NA<% } %> <br> <% if(locals.complaintdata.state){ %><%= locals.complaintdata.state %><% }else{ %>NA<% } %> <br> <% if(locals.complaintdata.country){ %><%= locals.complaintdata.country %><% }else{ %>NA<% } %></p>
+                </div>
+                <div class="complaint">
+                    <h5 class="my-3">Suspect Details</h5>
+                    <h6>Name : <% if(locals.complaintdata.suspectName){ %><%= locals.complaintdata.suspectName %><% }else{ %>NA<% } %></h6>
+                    <p>Mobile : <% if(locals.complaintdata.suspectMobile){ %><%= locals.complaintdata.suspectMobile %><% }else{ %>NA<% } %></p>
+                    <p>Social Media Details : <br> <% if(locals.complaintdata.suspectSocial){ %><%= locals.complaintdata.suspectSocial %><% }else{ %>NA<% } %> </p>
+                    <p>Other details : <br> <% if(locals.complaintdata.otherDetails){ %><%= locals.complaintdata.otherDetails %><% }else{ %>NA<% } %> </p>
+
+                    <h5 class="my-3">Complaint Description</h5>
+                    <p><% if(locals.complaintdata.description){ %><%= locals.complaintdata.description %><% }else{ %>NA<% } %></p>
+                    <h5 class="my-3">Evidences Submitted</h5>
+                    <div class="evid">
+                        <% if(locals.complaintdata.evidence && locals.complaintdata.evidence.length > 0){ locals.complaintdata.evidence.forEach(element => { %>
+                            <% let mediaExtension = element.split('.').pop().toLowerCase() %>
+                            <% if(['jpg', 'jpeg', 'png', 'gif'].includes(mediaExtension)){ %>
+                            <img class="my-3" src="/assets/<%= element %>" width="300px" height="300px" alt="">
+                            <% } %>
+                            <% if(['mp3', 'ogg', 'wav'].includes(mediaExtension)){ %>
+                        <audio class="my-3" controls>
+                            <source src="/assets/<%= element %>" type="audio/mpeg">
+
+                        </audio>  
+                        <% } %> 
+                        <% if(['mp4', 'webm','avi'].includes(mediaExtension)){ %>
+                        <video  class="my-3" width="640" height="360" controls>
+                            <source src="/assets/<%= element %>" type="video/mp4">
+                        </video> 
+                        <% } %> 
+                        <% })} %>                         
+                    </div>
+                    <% } %>
+                    <div class="compstatus w-50">
+                        <h5>Change Complaint Status</h5>
+                <form action="" id="complaintViewReg">
+                        <select name="compstatus" id="compstatus" class="form-control my-3 w-50" <% if(locals.complaintdata.status === "Closed"){ %> disabled <% } %>>
+                            <% if(locals.complaintdata.status === "Pending"){ %>
+                            <option value="">Pending</option>
+                            <option value="Not Credible">Not Credible</option>
+                            <option value="Accepted">Accepted</option>
+                            <option value="Working On It">Working On It</option>
+                            <option value="Closed">Closed</option>
+                            <% }else if(locals.complaintdata.status === "Not Credible"){ %>
+                                <option value="Not Credible">Not Credible</option>
+                                <option value="Accepted">Accepted</option>
+                                <option value="Working On It">Working On It</option>
+                                <option value="Closed">Closed</option>
+                            <% }else if(locals.complaintdata.status === "Accepted"){ %>
+                                <option value="Accepted">Accepted</option>
+                                <option value="Not Credible">Not Credible</option>
+                                <option value="Working On It">Working On It</option>
+                                <option value="Closed">Closed</option>
+                            <% }else if(locals.complaintdata.status === "Working On It"){ %>
+                                    <option value="Working On It">Working On It</option>
+                                    <option value="Accepted">Accepted</option>
+                                    <option value="Not Credible">Not Credible</option>
+                                    <option value="Closed">Closed</option>
+                                <% }else if(locals.complaintdata.status === "Closed"){ %>
+                                    <option value="Closed">Closed</option>
+                                    <option value="Working On It">Working On It</option>
+                                    <option value="Accepted">Accepted</option>
+                                    <option value="Not Credible">Not Credible</option>
+                                    <% } %>
+                        </select>
+                        <p class="text-danger" id="compErr" style="display: none;"></p>
+                        <h6 class="my-3">Leave an Update :</h6>
+                        <textarea name="complaintUpdate" id="updateBox" cols="30" rows="5"></textarea>
+                        <p class="text-danger" id="updateErr" style="display: none;"></p>
+                        <button type="submit" class="btn my-4">Update</button>
+                    </div>
+                    <div class="complaintcomments">
+                        <h5 class="my-5">Updations</h5>
+                        <p>12-02-23</p>
+                        <div class="officeside my-3">
+                            <h6><span class="updatestatus">Status</span></h6>
+                            <div class="officemsg my-3">
+                                <p class="p-4">Can u provide more details about incident.</p>
+                                <span class="officetime"> 09:29 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="userside my-3">
+                            <div class="usermsg my-3">
+                                <p class="p-4">We invite you to join our officer portal as a crucial step towards supporting women empowerment and ensuring justice in cases of cyber crimes against women. Your participation and engagement in our platform can make a significant difference in investigating and addressing these sensitive issues effectively. By registering on our website, you become an integral part of a community dedicated to safeguarding women's rights and combating cyber threats. Your expertise, commitment, and dedication to upholding justice are invaluable assets in our collective mission to create a safer and more inclusive digital space for all. Together, let us stand strong in our resolve to protect and empower women, and to ensure that every case is thoroughly investigated and justice is served.</p>
+                                <span class="usertime"> 09:29 PM</span>
+                            </div>
+                        </div>
+                        <div class="officeside my-3">
+                            <h6><span class="updatestatus">Status</span></h6>
+                            <div class="officemsg my-3">
+                                <p class="p-4">Can u provide more details about incident.</p>
+                                <span class="officetime"> 09:29 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="userside my-3">
+                            <div class="usermsg my-3">
+                                <p class="p-4">We invite you to join our officer portal as a crucial step towards supporting women empowerment and ensuring justice in cases of cyber crimes against women. Your participation and engagement in our platform can make a significant difference in investigating and addressing these sensitive issues effectively. By registering on our website, you become an integral part of a community dedicated to safeguarding women's rights and combating cyber threats. Your expertise, commitment, and dedication to upholding justice are invaluable assets in our collective mission to create a safer and more inclusive digital space for all. Together, let us stand strong in our resolve to protect and empower women, and to ensure that every case is thoroughly investigated and justice is served.</p>
+                                <span class="usertime"> 09:29 PM</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/public/js/complaintViewStatusScript.js"></script>
+<%-include('layout/footer.ejs')  %>
