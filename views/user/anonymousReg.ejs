@@ -7,10 +7,10 @@
                     <div class="card col-md-10 p-4 maincard">
                         <h3>Register Your Complaints Here</h3>
                         <div class="formdiv px-4">
-                            <form action="" id="anonymousReg">
+                            <form action="/registerAnonymously" method="post" id="anonymousReg" enctype="multipart/form-data">
                                 <div class="inputdiv my-3">
                                     <label for="description">Select Crime type</label>
-                                    <select name="crimeSelect" id="selectBox" class="form-control">
+                                    <select name="crime" id="selectBox" class="form-control">
                                         <option value="">--Select Crime type--</option>
                                         <option value="Blackmail">Blackmail</option>
                                         <option value="Threats">Threats</option>
@@ -20,7 +20,7 @@
                                     </div>
                                 <div class="inputdiv my-3">
                                     <label for="description">Date Of Incident</label>
-                                    <input type="date" name="description" id="date" class="form-control">
+                                    <input type="date" name="date" id="date" class="form-control">
                                     <p class="text-danger" id="dateerr" style="display: none;"></p>
                                     </div>
                                 <div class="inputdiv my-3">
@@ -30,41 +30,47 @@
                                 </div>
                                 <div class="inputdiv my-3">
                                     <label for="description">Upload Evidence Here</label>
-                                    <input type="file" name="description" id="evidenceUpload" class="form-control" multiple>
+                                    <input type="file" name="evidence" id="evidenceUpload" class="form-control" multiple>
                                     <p class="text-primary">Any kinds of screenshots, audios or videos can be uploaded.</p>
                                     <p class="text-danger" id="evidenceErr" style="display: none;"></p>
                                     </div>
                                 <h5 class="mt-5">Suspect Details</h5>
                                 <div class="inputdiv my-3">
                                 <label for="description">Name</label>
-                                <input type="text" name="description" id="description" class="form-control">
+                                <input type="text" name="suspectName" id="description" class="form-control">
                                 <p class="text-danger">Not Mandatory.</p>
                                 <p class="text-danger" id="descriptionerr" style="display: none;"></p>
                                 </div>
                                 <div class="inputdiv my-3">
                                     <label for="description">Mobile</label>
-                                    <input type="text" name="description" placeholder="Enter mobile number if any." id="description" class="form-control">
+                                    <input type="text" name="suspectMobile" placeholder="Enter mobile number if any." id="description" class="form-control">
                                     <p class="text-danger">Not Mandatory.</p>
                                     <p class="text-danger" id="descriptionerr" style="display: none;"></p>
                                 </div>
                                 <div class="inputdiv my-3">
                                     <label for="description">Social Media Details</label>
-                                    <input type="text" name="description" id="description" class="form-control">
+                                    <input type="text" name="suspectSocial" id="description" class="form-control">
                                     <p class="text-danger">Not Mandatory.</p>
                                     <p class="text-danger" id="descriptionerr" style="display: none;"></p>
                                 </div>
                                 <div class="inputdiv my-3">
                                     <label for="description">Other Details if any.</label>
-                                    <textarea type="text" rows="5" name="description" id="description" class="form-control"></textarea>
+                                    <textarea type="text" rows="5" name="otherDetails" id="description" class="form-control"></textarea>
                                     <p class="text-danger">Not Mandatory.</p>
                                     <p class="text-danger" id="descriptionerr" style="display: none;"></p>
                                 </div>
                                 <h5 class="mt-5">Officer Details</h5>
                                 <div class="inputdiv my-3">
                                     <label for="description">Select Officer</label>
-                                    <select name="crimeSelect" id="officerSelect" class="form-control">
+                                    <select name="officer_Id" id="officerSelect" class="form-control">
                                         <option value="">--Select officer--</option>
-                                        <option value="Blackmail">Sadashivam</option>
+                                        <% if(officerAvailable.length > 0){%>
+                                            <% officerAvailable.forEach((officer)=>{%>
+                                                 <option value="<%=officer._id%>"><%=officer.name%></option>
+ 
+                                            <% })%>
+ 
+                                         <%}%>
                                             
                                     </select>
                                     <p class="text-danger" id="officerErr" style="display: none;"></p>
@@ -98,5 +104,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 </html>
-<%-include("userLayout/footer.ejs")%>
+
 

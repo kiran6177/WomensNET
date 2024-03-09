@@ -1,121 +1,128 @@
 <%-include('userLayout/header.ejs')%>
 <section class="registerForm">
-    <div class="container">
-        <div class="maincon">
+        <div class="container">
+            <div class="maincon">
 
-            <div class="row d-flex justify-content-evenly p-5">
-                <div class="card col-md-10 p-4 maincard">
-                    <h3>Register Your Complaints Here</h3>
-                    <div class="formdiv px-4">
-                        <form action="">
-                            <div class="inputdiv my-3">
-                                <label for="description">Select Crime type</label>
-                                <select name="crimeSelect" id="" class="form-control">
-                                    <option value="">--Select Crime type--</option>
-                                    <option value="Blackmail">Blackmail</option>
-                                    <option value="Threats">Threats</option>
-                                    <option value="Sexual Harassment">Sexual Harassment</option>
-                                </select>
+                <div class="row d-flex justify-content-evenly p-5">
+                    <div class="card col-md-10 p-4 maincard">
+                        <h3>Register Your Complaints Here</h3>
+                        <div class="formdiv px-4">
+                            <form action="/register" method="post" id="logForm2" enctype="multipart/form-data" >
+                                <div class="inputdiv my-3">
+                                    <label for="description">Select Crime type</label>
+                                    <select name="crime" id="selectBox" class="form-control">
+                                        <option value="">--Select Crime type--</option>
+                                        <option value="Blackmail">Blackmail</option>
+                                        <option value="Threats">Threats</option>
+                                        <option value="Sexual Harassment">Sexual Harassment</option>
+                                    </select>
+                                    <p class="text-danger" id="selectErr" style="display: none;"></p>
+                                    </div>
+                                <div class="inputdiv my-3">
+                                    <label for="description">Date Of Incident</label>
+                                    <input type="date" name="date" id="date" class="form-control">
+                                    <p class="text-danger" id="dateerr" style="display: none;"></p>
+                                    </div>
+                                <div class="inputdiv my-3">
+                                <label for="description">Type Your Complaint Here</label>
+                                <textarea type="text" name="description" rows="5" cols="10" id="descriptionBox" class="form-control"></textarea>
                                 <p class="text-danger" id="descriptionerr" style="display: none;"></p>
                                 </div>
-                            <div class="inputdiv my-3">
-                                <label for="description">Date Of Incident</label>
-                                <input type="date" name="description" id="description" class="form-control">
-                                <p class="text-danger" id="descriptionerr" style="display: none;"></p>
-                                </div>
-                            <div class="inputdiv my-3">
-                            <label for="description">Type Your Complaint Here</label>
-                            <textarea type="text" name="description" rows="5" cols="10" id="description" class="form-control"></textarea>
-                            <p class="text-danger" id="descriptionerr" style="display: none;"></p>
-                            </div>
-                            <div class="inputdiv my-3">
-                                <label for="description">Upload Evidence Here</label>
-                                <input type="file" name="description" id="description" class="form-control" multiple>
-                                <p class="text-primary">Any kinds of screenshots, audios or videos can be uploaded.</p>
-                                <p class="text-danger" id="descriptionerr" style="display: none;"></p>
-                                </div>
-                            <h5 class="mt-5">Suspect Details</h5>
-                            <div class="inputdiv my-3">
-                            <label for="description">Name</label>
-                            <input type="text" name="description" id="description" class="form-control">
-                            <p class="text-danger">Not Mandatory.</p>
-                            <p class="text-danger" id="descriptionerr" style="display: none;"></p>
-                            </div>
-                            <div class="inputdiv my-3">
-                                <label for="description">Mobile</label>
-                                <input type="text" name="description" placeholder="Enter mobile number if any." id="description" class="form-control">
+                                <div class="inputdiv my-3">
+                                    <label for="description">Upload Evidence Here</label>
+                                    <input type="file" name="evidence" id="evidenceUpload" class="form-control" multiple>
+                                    <p class="text-primary">Any kinds of screenshots, audios or videos can be uploaded.</p>
+                                    <p class="text-danger" id="evidenceErr" style="display: none;"></p>
+                                    </div>
+                                <h5 class="mt-5">Suspect Details</h5>
+                                <div class="inputdiv my-3">
+                                <label for="description">Name</label>
+                                <input type="text" name="suspectName" id="susname" class="form-control">
                                 <p class="text-danger">Not Mandatory.</p>
                                 <p class="text-danger" id="descriptionerr" style="display: none;"></p>
-                            </div>
-                            <div class="inputdiv my-3">
-                                <label for="description">Social Media Details</label>
-                                <input type="text" name="description" id="description" class="form-control">
-                                <p class="text-danger">Not Mandatory.</p>
-                                <p class="text-danger" id="descriptionerr" style="display: none;"></p>
-                            </div>
-                            <div class="inputdiv my-3">
-                                <label for="description">Other Details if any.</label>
-                                <textarea type="text" rows="5" name="description" id="description" class="form-control"></textarea>
-                                <p class="text-danger">Not Mandatory.</p>
-                                <p class="text-danger" id="descriptionerr" style="display: none;"></p>
-                            </div>
-                            <h5 class="mt-5">Enter Your Details</h5>
-                            <div class="inputdiv my-3">
-                                <label for="reportername">Name</label>
-                                <input type="text" name="reportername" id="reportername" class="form-control">
-                                <p class="text-danger" id="reporternameerr" style="display: none;"></p>
-                            </div>
-                            <div class="inputdiv my-3">
-                                <label for="reporteremail">Email</label>
-                                <input type="text" name="reporteremail" id="reporteremail" class="form-control">
-                                <p class="text-danger" id="reporteremailerr" style="display: none;"></p>
-                            </div>
-                            <div class="inputdiv my-3">
-                                <label for="reporterMobile">Mobile</label>
-                                <input type="text" name="reporterMobile" id="reporterMobile" class="form-control">
-                                <p class="text-danger" id="reporterMobileerr" style="display: none;"></p>
-                            </div>
-                            <h5 class="mt-5">Address</h5>
-                            <div class="inputdiv my-3">
-                                <label for="housedetails">House, Street, City Details</label>
-                                <input type="text" name="housedetails" id="housedetails" class="form-control">
-                                <p class="text-danger" id="houseerr" style="display: none;"></p>
-                            </div>
-                            <div class="inputdiv my-3">
-                                <label for="district">District</label>
-                                <input type="text" name="district" id="district" class="form-control">
-                                <p class="text-danger" id="districterr" style="display: none;"></p>
-                            </div> 
-                            <div class="inputdiv my-3">
-                                <label for="state">State</label>
-                                <input type="text" name="state" id="state" class="form-control">
-                                <p class="text-danger" id="stateerr" style="display: none;"></p>
-                            </div> 
-                            <div class="inputdiv my-3">
-                                <label for="country">Country</label>
-                                <input type="text" name="country" id="country" class="form-control">
-                                <p class="text-danger" id="countryerr" style="display: none;"></p>
-                            </div> 
-                            <h5 class="mt-5">Officer Details</h5>
-                            <div class="inputdiv my-3">
-                                <label for="description">Select Officer</label>
-                                <select name="crimeSelect" id="" class="form-control">
-                                    <option value="">--Select officer--</option>
-                                    <option value="Blackmail">Sadashivam</option>
-                                        
-                                </select>
-                                <p class="text-danger" id="descriptionerr" style="display: none;"></p>
                                 </div>
-                            <input type="submit" class="btn form-control" value="REGISTER">
-                        </form>
+                                <div class="inputdiv my-3">
+                                    <label for="description">Mobile</label>
+                                    <input type="text" name="suspectMobile" placeholder="Enter mobile number if any." id="susmobile" class="form-control">
+                                    <p class="text-danger">Not Mandatory.</p>
+                                    <p class="text-danger" id="descriptionerr" style="display: none;"></p>
+                                </div>
+                                <div class="inputdiv my-3">
+                                    <label for="description">Social Media Details</label>
+                                    <input type="text" name="suspectSocials" id="sussocials" class="form-control">
+                                    <p class="text-danger">Not Mandatory.</p>
+                                    <p class="text-danger" id="descriptionerr" style="display: none;"></p>
+                                </div>
+                                <div class="inputdiv my-3">
+                                    <label for="description">Other Details if any.</label>
+                                    <textarea type="text" rows="5" name="otherDetails" id="others" class="form-control"></textarea>
+                                    <p class="text-danger">Not Mandatory.</p>
+                                    <p class="text-danger" id="descriptionerr" style="display: none;"></p>
+                                </div>
+                                <h5 class="mt-5">Enter Your Details</h5>
+                                <div class="inputdiv my-3">
+                                    <label for="reportername">Name</label>
+                                    <input type="text" name="reportername" id="name" class="form-control">
+                                    <p class="text-danger" id="nameerr" style="display: none;"></p>
+                                </div>
+                                <div class="inputdiv my-3">
+                                    <label for="reporteremail">Email</label>
+                                    <input type="text" name="reporteremail" id="email" class="form-control">
+                                    <p class="text-danger" id="emailerr" style="display: none;"></p>
+                                </div>
+                                <div class="inputdiv my-3">
+                                    <label for="reporterMobile">Mobile</label>
+                                    <input type="text" name="reporterMobile" id="mobile" class="form-control">
+                                    <p class="text-danger" id="mobileerr" style="display: none;"></p>
+                                </div>
+                                <h5 class="mt-5">Address</h5>
+                                <div class="inputdiv my-3">
+                                    <label for="housedetails">House, Street, City Details</label>
+                                    <input type="text" name="houseDetail" id="housedetails" class="form-control">
+                                    <p class="text-danger" id="houseerr" style="display: none;"></p>
+                                </div>
+                                <div class="inputdiv my-3">
+                                    <label for="district">District</label>
+                                    <input type="text" name="district" id="district" class="form-control">
+                                    <p class="text-danger" id="districterr" style="display: none;"></p>
+                                </div> 
+                                <div class="inputdiv my-3">
+                                    <label for="state">State</label>
+                                    <input type="text" name="state" id="state" class="form-control">
+                                    <p class="text-danger" id="stateerr" style="display: none;"></p>
+                                </div> 
+                                <div class="inputdiv my-3">
+                                    <label for="country">Country</label>
+                                    <input type="text" name="country" id="country" class="form-control">
+                                    <p class="text-danger" id="countryerr" style="display: none;"></p>
+                                </div> 
+                                <h5 class="mt-5">Officer Details</h5>
+                                <div class="inputdiv my-3">
+                                    <label for="description">Select Officer</label>
+                                    <select name="officer_Id" id="officerSelect" class="form-control">
+                                        <option value="">--Select officer--</option>
+                                       <% if(officerAvailable.length > 0){%>
+                                           <% officerAvailable.forEach((officer)=>{%>
+                                                <option value="<%=officer._id%>"><%=officer.name%></option>
+
+                                           <% })%>
+
+                                        <%}%>
+                                            
+                                    </select>
+                                    <p class="text-danger" id="officerErr" style="display: none;"></p>
+                                    </div>
+                                <input type="submit" class="btn form-control" value="REGISTER">
+                            </form>
+                        </div>
                     </div>
-                </div>
-                
-            </div>  
+                    
+                </div>  
 
+            </div>
         </div>
-    </div>
-</section>
-<script src="/public/js/userRegistration.js"></script>
+    </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/public/js/registeredUserComplaintScript.js"></script>
+
 <%-include('userLayout/footer.ejs')%>
