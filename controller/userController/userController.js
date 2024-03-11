@@ -71,10 +71,15 @@ const searchComplaintStatus = async (req, res) => {
     const searchComplaint = await complaintModel
       .findOne({ complaint_Id: parseInt(search) })
       .populate("officer_Id");
-      const complaintObjectId= new mongoose.Types.ObjectId(searchComplaint._id)
-      const complaintMessage=await messageModel.aggregate([{$match:{complaint_Id:complaintObjectId}},{$sort:{date:1}}])
+      if(searchComplaint){
+        const complaintObjectId= new mongoose.Types.ObjectId(searchComplaint._id)
+        const complaintMessage=await messageModel.aggregate([{$match:{complaint_Id:complaintObjectId}},{$sort:{date:1}}])
+          res.render("user/complaintStatus", { searchComplaint,complaintMessage});
+      }else{
+        res.redirect('/')
+      }
 
-    res.render("user/complaintStatus", { searchComplaint,complaintMessage});
+    
   } catch (error) {
     console.error(error);
   }

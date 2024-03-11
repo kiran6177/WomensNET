@@ -1,6 +1,6 @@
 <%-include("adminLayout/header.ejs")%>
 
-<section class="officerdash ">
+<section class="officerdash mx-4 mx-sm-0">
     <div class="container">
         <div class="maincon">
 
@@ -12,25 +12,25 @@
                    <% }%>
                     <div class="officerlist">
                         <h5 class="mt-5">Officer Data</h5>
-                        <div class="offimg"><img src="/assets/<%=officerDetail.profileImage%>" width="200px" height="200px" alt=""></div>
-                        <h5>Name :<%=officerDetail.name%> </h5>
-                        <h6>Designation :<%=officerDetail.designation%> </h6>
-                        <h6>Current Working Location : <%=officerDetail.workingLocation%> </h6>
-                        <h6>Email : <%=officerDetail.email%> </h6>
-                        <h6>Mobile : <%=officerDetail.mobile%> </h6>
-                        <h6>ID Proof</h6>
+                        <div class="offimg my-4"><img src="/assets/<%=officerDetail.profileImage%>" width="200px" height="200px" alt=""></div>
+                        <h5 class="my-4">Name :<%=officerDetail.name%> </h5>
+                        <h6 class="my-3">Designation :<%=officerDetail.designation%> </h6>
+                        <h6 class="my-3">Current Working Location : <%=officerDetail.workingLocation%> </h6>
+                        <h6 class="my-3">Email : <%=officerDetail.email%> </h6>
+                        <h6 class="my-3">Mobile : <%=officerDetail.mobile%> </h6>
+                        <h6 class="my-3">ID Proof</h6>
 
                         <div class="idimg">
                             <%officerDetail.IDProof.forEach((idproof)=>{%>
-                                <img src="/assets/<%=idproof%>" width="150px" height="150px" alt="">
+                                <img src="/assets/<%=idproof%>" width="150px" height="150px" class="my-4" alt="">
 
                             <%})%>
                             
                         </div>
-                        <h6>House No :<%=officerDetail.street%> </h6>
-                        <h6>District :<%=officerDetail.district%> </h6>
-                        <h6>State :<%=officerDetail.state%> </h6>
-                        <h6>Country :<%=officerDetail.country%> </h6>
+                        <h6 class="my-3">House No :<%=officerDetail.street%> </h6>
+                        <h6 class="my-3">District :<%=officerDetail.district%> </h6>
+                        <h6 class="my-3">State :<%=officerDetail.state%> </h6>
+                        <h6 class="my-3">Country :<%=officerDetail.country%> </h6>
                         </div>
                     </div>
             </div>  

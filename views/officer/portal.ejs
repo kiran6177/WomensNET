@@ -1,5 +1,5 @@
 <%-include('layout/header.ejs')  %>
-<section class="officerportal mb-5">
+<section class="officerportal mb-5 mx-4 mx-sm-0">
     <div class="container">
         <div class="row ">
             <div class="mainportal col-md-12 p-5">
@@ -15,7 +15,7 @@
                 </div>
                 <div class="reportlist">
                     <h5>Complaints List</h5>
-                    <table class="table">
+                    <table class="table table1" >
                         <tr><th>Complaint ID</th>
                         <th>Name</th>
                         <th>Mobile</th>
@@ -35,6 +35,22 @@
                                 <% }else if(complaint.status === "Suspended"){ %><span class="suspended1">Suspended</span><% } %></td>
                             <td><a href="/officer/viewcomplaint?id=<%= complaint._id %>">VIEW</a></td>
                         </tr>
+                        <% })} %>
+                    </table>
+                    <table class="table table2" style="display: none;">
+                        <% if(locals.complaintdata && locals.complaintdata.length > 0){ locals.complaintdata.forEach(complaint => { %>
+                        <tr><th>Complaint ID</th><td>Confidential</td></tr>
+                        <tr><th>Name</th><td><% if(complaint.reportername){ %><%= complaint.reportername %><% }else{ %>NA<% } %></td></tr>
+                        <tr><th>Mobile</th><td><% if(complaint.reportermobile){ %><%= complaint.reportermobile %><% }else{ %>NA<% } %></td></tr>
+                        <tr><th>Status</th><td>
+                            <% if(complaint.status === "Approved"){ %><span class="approved1">Approved</span>
+                                <% }else if(complaint.status === "Pending"){ %><span class="pending1">Pending</span>
+                                <% }else if(complaint.status === "Not Credible"){ %><span class="notcredible1">Not Credible</span>
+                                <% }else if(complaint.status === "Closed"){ %><span class="closed1">Closed</span>
+                                <% }else if(complaint.status === "Working On It"){ %><span class="working1">Working On It</span>
+                                <% }else if(complaint.status === "Suspended"){ %><span class="suspended1">Suspended</span><% } %>
+                        </td></tr>
+                        <tr><th>Action</th><td><a href="/officer/viewcomplaint?id=<%= complaint._id %>">VIEW</a></td></tr>
                         <% })} %>
                     </table>
                 </div>

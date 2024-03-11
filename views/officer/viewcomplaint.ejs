@@ -1,5 +1,5 @@
 <%-include('layout/header.ejs')  %>
-<section class="officerportal mb-5">
+<section class="officerportal mb-5 mx-4 mx-sm-0">
     <div class="container">
         <div class="row ">
             <div class="mainportal col-md- p-5">
@@ -26,23 +26,23 @@
                         <% if(locals.complaintdata.evidence && locals.complaintdata.evidence.length > 0){ locals.complaintdata.evidence.forEach(element => { %>
                             <% let mediaExtension = element.split('.').pop().toLowerCase() %>
                             <% if(['jpg', 'jpeg', 'png', 'gif'].includes(mediaExtension)){ %>
-                            <img class="my-3" src="/assets/<%= element %>" width="300px" height="300px" alt="">
+                            <img class="my-3" src="/assets/<%= element %>" width="60%" height="60%" alt="">
                             <% } %>
                             <% if(['mp3', 'ogg', 'wav'].includes(mediaExtension)){ %>
-                        <audio class="my-3" controls>
+                        <audio class="my-3" style="width: 70%;" controls>
                             <source src="/assets/<%= element %>" type="audio/mpeg">
 
                         </audio>  
                         <% } %> 
                         <% if(['mp4', 'webm','avi'].includes(mediaExtension)){ %>
-                        <video  class="my-3" width="640" height="360" controls>
+                        <video  class="my-3" width="64%" height="36%" controls>
                             <source src="/assets/<%= element %>" type="video/mp4">
                         </video> 
                         <% } %> 
                         <% })} %>                         
                     </div>
                     <% } %>
-                    <div class="compstatus w-50">
+                    <div class="compstatus">
                         <h5>Change Complaint Status</h5>
                         <select name="compstatus" id="compstatus" class="form-control my-3 w-50" <% if(locals.complaintdata.status === "Closed" || locals.complaintdata.status === "Suspended"){ %> disabled <% } %>>
                             <% if(locals.complaintdata.status === "Pending"){ %>
@@ -88,7 +88,7 @@
                         <p><%= msgdate %></p>
                         <% if(msg.owner == "Officer"){ %>
                         <div class="officeside my-3">
-                            <h6><% if(msg.status === "Approved"){ %><span class="approved1">Approved</span>
+                            <h6><% if(msg.status === "Accepted"){ %><span class="approved1">Accepted</span>
                                 <% }else if(msg.status === "Pending"){ %><span class="pending1">Pending</span>
                                 <% }else if(msg.status === "Not Credible"){ %><span class="notcredible1">Not Credible</span>
                                 <% }else if(msg.status === "Closed"){ %><span class="closed1">Closed</span>

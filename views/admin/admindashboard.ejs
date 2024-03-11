@@ -1,5 +1,5 @@
 <%-include("adminLayout/header.ejs")%>
-<section class="officerdash ">
+<section class="officerdash mx-5 mx-sm-0">
         <div class="container">
             <div class="maincon">
 
@@ -8,7 +8,7 @@
                         <h3>ADMIN DASHBOARD</h3>
                         <div class="officerlist">
                             <h5>Officer List</h5>
-                            <table class="table">
+                            <table class="table table1">
                                 <th>Name</th>
                                 <th>Mobile</th>
                                 <th>Designation</th>
@@ -35,6 +35,26 @@
                                <% }%>
                                
                                 
+                            </table>
+                            <table class="table table2" style="display: none;">
+                                <% if(officersEnrolled.length > 0){%>
+                                    <% officersEnrolled.forEach((officers)=>{%>
+                                <tr><th>Name</th><td><%=officers.name%></td></tr>
+                                <tr><th>Mobile</th><td><%=officers.mobile%></td></tr>
+                                <tr><th>Designation</th><td><%=officers.designation%></td></tr>
+                                <tr><th>Status</th>
+                                    <% if(officers.isApproved === 1){ %>
+                                        <td><span class="text-success">Approved</span></option>
+                                        </td>
+                                   <% } else { %>
+                                    <td><span class="text-danger">Not Approved</span></option>
+                                    </td>
+                                  <% } %>
+                                </tr>
+                                <tr><th>Action</th><td><a href="/admin/viewOfficer?oid=<%=officers._id%>">VIEW</a></td></tr>
+                                <tr><td></td><td></td></tr>
+                                <% })%>
+                                <% }%>
                             </table>
                         </div>
                 </div>  

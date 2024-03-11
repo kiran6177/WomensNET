@@ -1,12 +1,12 @@
 <%-include("layout/header.ejs")  %>
-<section class="registerForm">
+<section class="registerForm mx-3 mx-sm-0">
     <div class="container">
         <div class="maincon">
             <% if(locals.err){ %>
                 <input type="hidden" style="display: none;" id="err" value="<%= locals.err %>">
             <% } %>
             <div class="row d-flex justify-content-evenly my-4">
-                <div class="card col-md-10 p-4 officermain">
+                <div class="card col-md-10 p-4 officermain ">
                     <h3>Officer Registration</h3>
                     <div class="formdiv px-4">
                         <form action="/officer/register" method="post" enctype="multipart/form-data" id="officerRegForm">

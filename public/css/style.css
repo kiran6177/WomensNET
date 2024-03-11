@@ -10,6 +10,7 @@ body{
 }
 
 .navigationbar{
+    position: relative;
     font-family: "Kanit", sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -61,27 +62,29 @@ body{
     height: 100%;
 }
 .maindiv .banner{
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    height: 500px;
+}
+.maindiv .bannermain{
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 .maindiv .bannerimg{
     overflow: hidden;
     height: 100%;
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: flex-end;
 }
 .maindiv .banner .rep , .maindiv .banner .your , .maindiv .banner .comp , .maindiv .banner .here{
-    position: absolute;
     color: aliceblue;
     text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.458);
     font-size: 5rem;
 }
 .maindiv .banner .rep{
-    top:40px;
+    top:10px;
     left:0;
 }
 .maindiv .banner .your{
@@ -106,7 +109,6 @@ body{
 .quote{
     position: relative;
     width: 100%;
-    height: 300px;
 }
 .quote img{
     z-index: -1;
@@ -153,28 +155,19 @@ body{
     color: rgb(245, 209, 250);
     
 }
-.sec1 .maincon1 p{
-    width: 70%;
-}
+
 .sec2 .maincon2{
-    position: relative;
+    display: flex;
+    align-items: center;
     background:#ce165a;
     box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.621);
     border: 1px solid #ce165a;
     border-radius: 10px;
-    color: rgb(245, 209, 250);
-    
+    color: rgb(245, 209, 250);    
 }
-.sec2 .maincon2 p{
-    width: 70%;
-}
-.sec2 .maincon2 img{
-    opacity: 60%;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+.sec2 .maincon2 .mainsimg{
+    opacity: 50%;
     mix-blend-mode: multiply;
-    height: 100%;
 }
 .regbtns{
     display: flex;
@@ -300,6 +293,7 @@ body{
 .compstatus form{
     display: flex;
     flex-direction: column;
+    width: 50%;
 }
 .compstatus button{
     border: 1px solid #ce165a;
@@ -454,6 +448,7 @@ body{
 .sendmessage form{
     display: flex;
     flex-direction: column;
+    width: 50%;
 }
 .sendmessage button{
     border: 1px solid #ce165a;
@@ -521,4 +516,121 @@ body{
     color: white !important;
     display: block !important;
     margin: auto;
+}
+.leftdrop{
+    position:absolute;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    right: 0;
+    z-index: 3;
+}
+.leftdrop i{
+    font-size: 2rem;
+    text-align: end;
+    padding-right: 2rem;
+}
+.leftdrop a{
+    font-weight: 600;
+    padding: 2rem;
+    text-align: right;
+    text-decoration: none;
+    color: black;
+    transition: all 0.3s ease;
+}
+.leftdrop a:hover{
+    color: #ce165a;
+}
+@media (max-width:1400px){
+    .quote img{
+        height: 240px;
+        width: 240px;
+        left: 25%;
+    }
+    .quote h3{
+        font-size: 24px;
+    }
+    .sec2 .maincon2 img{
+        height:80%;
+    }
+}
+@media (max-width:1340px) {
+    .leftnav{
+        display: none !important;
+    }
+    .leftdrop{
+        display: flex !important;
+    }
+}
+@media (max-width:992px) {
+    .banner{
+        flex-direction: column;
+    }
+    .bannerimg{
+        width: 100% !important;
+    }
+    .sec2 .maincon2{
+        flex-direction: column;
+    }
+    .table1{
+        display: none ;
+    }
+    .table2{
+        display: table !important;
+    }
+}
+@media (max-width:768px) {
+    .quote img{
+        left: 20%;
+    }
+    .bannermain h3{
+        font-size: 4rem !important;
+    }
+    .quote h3{
+        font-size: 1rem;
+    }
+    .sec1 p , .sec2 p{
+        font-size: 12px;
+    }
+    .maincard label{
+        font-size: 14px;
+    }
+    .officemsg ,.usermsg{
+        width: 90% !important;
+    }
+    .sendmessage form{
+        width: 100% !important;
+    }
+    .compstatus form{
+        width: 100%;
+    }
+}
+@media (max-width:530px) {
+    .quote img{
+        height: 170px;
+        width: 170px;
+        top: 20%;
+        left: 13%;
+    }
+    .regbtns{
+        flex-direction: column;
+        text-align: center;
+    }
+    #statusform{
+        display: flex;
+        flex-direction: column;
+    }
+    #statusform input{
+        width: 100% !important;
+    }
+    .offbtn{
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media (max-width:414px) {
+    .bannermain h3{
+        font-size: 3rem !important;
+    }
 }

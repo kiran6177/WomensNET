@@ -41,6 +41,17 @@
 
                   
                 </div>
+                <div class="leftdrop" id="leftdrop" style="display: none;">
+                    <i class="fa-solid fa-bars"></i>
+                    <% if(locals.isAdminLogin){%>
+                        <a href="/admin/logout" style="display: none;">LOGOUT</a>
+
+                   <% } else{%>
+                    <a href="/admin/" style="display: none;">LOGIN</a>
+
+                  <% }%>
+                </div>
             </div>
         </div>
     </header>
+    <script src="/public/js/userheader.js"></script>

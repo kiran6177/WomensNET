@@ -36,6 +36,16 @@
                     <a href="/officer/register">REGISTER</a>
                     <% } %>
                 </div>
+                <div class="leftdrop" id="leftdrop" style="display: none;">
+                    <i class="fa-solid fa-bars"></i>
+                    <% if(locals.officerDet){ %>
+                        <a href="/officer/logout" style="display: none;">LOGOUT</a>
+                        <% }else{ %>
+                        <a href="/officer/login" style="display: none;">LOGIN</a>
+                        <a href="/officer/register" style="display: none;">REGISTER</a>
+                        <% } %>
+                </div>
             </div>
         </div>
     </header>
+    <script src="/public/js/userheader.js"></script>
