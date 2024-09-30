@@ -61,6 +61,7 @@ const register = async (req,res)=>{
             req.session.officerdata = officerdata
             const OTP = Math.floor(100000 + Math.random() * 900000);
             req.session.otp = OTP
+            console.log(OTP);
             const mailResult = mailer.sendmail(email,OTP)
             if(mailResult){
                 res.cookie('timer',true,{
@@ -77,7 +78,7 @@ const register = async (req,res)=>{
         res.render('officer/register',{err:"Account already exist!!"})
     }
     } catch (error) {
-        console.log(error.message)
+        console.log(error)
     }
 }
 

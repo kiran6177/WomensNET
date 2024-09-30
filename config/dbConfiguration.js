@@ -1,12 +1,20 @@
 const mongoose = require("mongoose");
 
 function dbConnect(){
-  mongoose.connect(process.env.db)
-  .then((resolve) => {
-    console.log("mongoDB Connected Successfully");
-  })
-  .catch((err) => {
-    console.error(err);
+  console.log(process.env.db);
+  
+  mongoose.connect(process.env.db);
+
+  mongoose.connection.on("connected", () => {
+    console.log("Connected to MongoDB");
+  });
+
+  mongoose.connection.on("error", (err) => {
+    console.log("Error connecting to MongoDB");
+  });
+
+  mongoose.connection.on("disconnected", () => {
+    console.log("Disconnected from MongoDB");
   });
 }
   
